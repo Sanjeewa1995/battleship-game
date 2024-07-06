@@ -1,4 +1,0 @@
-export const GAME_STATUS = {
-  IN_PROGRESS: "IN_PROGRESS",
-  FINISHED: "FINISHED",
-};

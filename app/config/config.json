@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "root",
+    "password": "",
+    "database": "battleship_game",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "test": {
+    "username": "root",
+    "password": "",
+    "database": "battleship_game_test",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "your_db_username",
+    "password": "your_db_password",
+    "database": "battleship_game_production",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  }
+}

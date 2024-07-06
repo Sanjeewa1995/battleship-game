@@ -5,7 +5,9 @@
     "outDir": "./dist",
     "rootDir": "./app",
     "strict": true,
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    // "resolveJsonModule": true,
+    // "allowSyntheticDefaultImports": true
   },
   "include": ["app/**/*"]
 }

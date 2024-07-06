@@ -14,10 +14,9 @@ CREATE TABLE
 CREATE TABLE
     ships (
         id INT AUTO_INCREMENT PRIMARY KEY,
-        game_id INT,
-        type ENUM ('BATTLESHIP', 'DESTROYER'),
-        size INT,
-        coordinates JSON,
-        hits INT DEFAULT 0,
-        FOREIGN KEY (game_id) REFERENCES games (id)
+        gameId INT NOT NULL,
+        type VARCHAR(50) NOT NULL,
+        position TEXT NOT NULL,
+        size INT NOT NULL,
+        FOREIGN KEY (gameId) REFERENCES games (id) ON DELETE CASCADE
     );

@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const const_1 = require("../common/const");
+const const_1 = require("../utils/const");
 const game_1 = require("../models/game");
 class GameService {
     static startGame(playerId) {
