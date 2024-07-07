@@ -8,9 +8,9 @@
 6. Start the server with `npm start`.
 
 ## API Endpoints
-- `POST /game`: Create a new game.
-- `POST /game/:gameId/ship`: Place a ship on the grid manually.
-- `POST /game/:gameId/move`: Record a player move.
+- `POST /game/start`: Create a new game.
+- `POST /ship/place`: Place a ship on the grid manually.
+- `POST /game/hit`: Record a player move.
 - `GET /game/:gameId/status`: Get the current status of the game.
 
 ## Unit Test
