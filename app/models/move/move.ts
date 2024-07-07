@@ -1,16 +1,14 @@
 import { DataTypes, Model } from "sequelize";
-import { ShipInput, ShipInterface, ShipOutput } from "./ship.interface";
-
 import sequelize from "../../db";
+import { MoveInput, MoveInterface, MoveOutput } from "./move.interface";
 
-class Ship extends Model<ShipOutput, ShipInput> implements ShipInterface {
+class Move extends Model<MoveOutput, MoveInput> implements MoveInterface {
   id!: number;
   gameId!: number;
-  type!: string;
   position!: string;
-  size!: number;
+  result!: string;
 }
-Ship.init(
+Move.init(
   {
     id: {
       type: DataTypes.INTEGER,
@@ -21,26 +19,22 @@ Ship.init(
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    type: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
     position: {
       type: DataTypes.STRING,
       allowNull: false,
-    }, // position in the format "A1,A2,A3,A4,A5"
-    size: {
-      type: DataTypes.INTEGER,
+    },
+    result: {
+      type: DataTypes.STRING,
       allowNull: false,
-    }, // size of the ship (e.g., 5 for Battleship, 4 for Destroyer)
+    },
   },
   {
     sequelize,
     paranoid: false,
-    tableName: "ships",
+    tableName: "moves",
     timestamps: true,
     underscored: true,
   }
 );
 
-export default Ship;
+export default Move;

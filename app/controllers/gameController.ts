@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import Joi from "joi";
 import * as gameDal from "../dal/game.dal";
 import * as shipDal from "../dal/ship.dal";
+import * as moveDal from "../dal/move.dal";
 
 import { setErrorResponse, setSuccessResponse } from "../utils/helperFunctions";
 import { startGameBodySchema } from "../utils/validation/event.schema";
@@ -21,24 +22,14 @@ export const startGame = async (req: Request, res: Response): Promise<void> => {
   }
 };
 
-export const placeShip = async (req: Request, res: Response): Promise<void> => {
-  try {
-    const { gameId } = req.params;
-    const { type, positions, size } = req.body;
-
-    // Check for overlap with existing ships
-    const existingShips = await shipDal.getAllShips(+gameId);
-    const existingPositions = existingShips.flatMap((ship) =>
-      ship.position.split(",")
-    );
-    if (positions.some((pos: string) => existingPositions.includes(pos))) {
-      setErrorResponse(res, 500, ERROR.SHIP_POSITION_OVERLAP);
-      return;
-    }
-    const ship = await shipDal.createShip(+gameId, type, size, positions);
-
-    setSuccessResponse(res, ship);
-  } catch (error) {
-    setErrorResponse(res, 500, error ?? ERROR.SHIP_PLACE_FAILED);
+export const getStatus = async (req: Request, res: Response) => {
+  const { gameId } = req.params;
+  const game = await gameDal.getById(+gameId);
+  if (!game) {
+    setErrorResponse(res, 404, ERROR.GAME_NOT_FOUND);
+    return;
   }
+  const ships = await shipDal.getAllShips(+gameId);
+  const moves = await moveDal.getAllMoves(+gameId);
+  setSuccessResponse(res, { game, ships, moves });
 };

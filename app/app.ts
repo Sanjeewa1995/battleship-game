@@ -3,7 +3,9 @@ import { Sequelize } from "sequelize";
 import * as mysql from "mysql2";
 //import { DEV_SEQUELIZE } from "../app/db/development";
 
-import battleshipRoutes from "./routes/battleship.route";
+import gameRoutes from "./routes/game.routes";
+import shipRoutes from "./routes/ship.routes";
+import moveRoutes from "./routes/move.routes";
 
 const app: Application = express();
 
@@ -37,6 +39,8 @@ app.get("/", (req, res) => {
 });
 
 // Attach routes to the app
-battleshipRoutes(app);
+gameRoutes(app);
+shipRoutes(app);
+moveRoutes(app);
 
 export default app;
