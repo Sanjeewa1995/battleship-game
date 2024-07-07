@@ -31,6 +31,9 @@ const express_1 = __importDefault(require("express"));
 const sequelize_1 = require("sequelize");
 const mysql = __importStar(require("mysql2"));
 //import { DEV_SEQUELIZE } from "../app/db/development";
+const game_routes_1 = __importDefault(require("./routes/game.routes"));
+const ship_routes_1 = __importDefault(require("./routes/ship.routes"));
+const move_routes_1 = __importDefault(require("./routes/move.routes"));
 const app = (0, express_1.default)();
 app.use(express_1.default.json());
 exports.DEV_SEQUELIZE = new sequelize_1.Sequelize("battleship", "root", "", {
@@ -46,6 +49,7 @@ exports.DEV_SEQUELIZE = new sequelize_1.Sequelize("battleship", "root", "", {
         evict: 1000,
     },
 });
+// Sync DB from sequelize orm
 exports.DEV_SEQUELIZE.sync()
     .then(() => {
     console.log("Synced db.");
@@ -56,7 +60,8 @@ exports.DEV_SEQUELIZE.sync()
 app.get("/", (req, res) => {
     res.json({ message: "Welcome to battleship application." });
 });
-// Import routes and attach them to the app
-const battleship_route_1 = __importDefault(require("./routes/battleship.route"));
-(0, battleship_route_1.default)(app);
+// Attach routes to the app
+(0, game_routes_1.default)(app);
+(0, ship_routes_1.default)(app);
+(0, move_routes_1.default)(app);
 exports.default = app;

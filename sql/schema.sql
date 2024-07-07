@@ -14,7 +14,7 @@ CREATE TABLE
 CREATE TABLE
     ships (
         id INT AUTO_INCREMENT PRIMARY KEY,
-        gameId INT NOT NULL,
+        game_id INT NOT NULL,
         type VARCHAR(50) NOT NULL,
         position TEXT NOT NULL,
         size INT NOT NULL,
@@ -26,7 +26,7 @@ CREATE TABLE
 CREATE TABLE
     moves (
         id INT AUTO_INCREMENT PRIMARY KEY,
-        gameId INT NOT NULL,
+        game_id INT NOT NULL,
         position VARCHAR(5) NOT NULL,
         result VARCHAR(50) NOT NULL,
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,

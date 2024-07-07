@@ -14,7 +14,7 @@ export const placeShip = async (req: Request, res: Response): Promise<void> => {
     const existingPositions = existingShips.flatMap((ship) =>
       ship.position.split(",")
     );
-    if (positions.some((pos: string) => existingPositions.includes(pos))) {
+    if (positions.split(',').some((pos: string) => existingPositions.includes(pos))) {
       setErrorResponse(res, 500, ERROR.SHIP_POSITION_OVERLAP);
       return;
     }

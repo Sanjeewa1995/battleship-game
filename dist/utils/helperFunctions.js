@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.setErrorResponse = void 0;
+exports.setSuccessResponse = exports.setErrorResponse = void 0;
 const setErrorResponse = (res, statusCode, error) => {
     let errorMessage = error;
     if (error instanceof Error) {
@@ -13,3 +13,10 @@ const setErrorResponse = (res, statusCode, error) => {
     });
 };
 exports.setErrorResponse = setErrorResponse;
+const setSuccessResponse = (res, data) => {
+    res.status(200).json({
+        success: true,
+        data: data,
+    });
+};
+exports.setSuccessResponse = setSuccessResponse;

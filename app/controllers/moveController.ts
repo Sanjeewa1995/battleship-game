@@ -7,8 +7,7 @@ import { ERROR } from "../utils/const";
 
 export const makeMove = async (req: Request, res: Response) => {
   try {
-    const { gameId } = req.params;
-    const { position } = req.body;
+    const { gameId, position } = req.body;
 
     const moveResult = await processMove(+gameId, position);
     const move = await moveDal.createMove(+gameId, moveResult, position);
@@ -18,7 +17,6 @@ export const makeMove = async (req: Request, res: Response) => {
     setErrorResponse(res, 500, error ?? ERROR.SHOT_FAILED);
   }
 };
-
 
 const processMove = async (
   gameId: number,
