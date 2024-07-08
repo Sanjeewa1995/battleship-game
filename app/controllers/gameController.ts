@@ -23,13 +23,17 @@ export const startGame = async (req: Request, res: Response): Promise<void> => {
 };
 
 export const getStatus = async (req: Request, res: Response) => {
-  const { gameId } = req.params;
-  const game = await gameDal.getById(+gameId);
-  if (!game) {
-    setErrorResponse(res, 404, ERROR.GAME_NOT_FOUND);
-    return;
+  try {
+    const { gameId } = req.params;
+    const game = await gameDal.getById(+gameId);
+    if (!game) {
+      setErrorResponse(res, 404, ERROR.GAME_NOT_FOUND);
+      return;
+    }
+    const ships = await shipDal.getAllShips(+gameId);
+    const moves = await moveDal.getAllMoves(+gameId);
+    setSuccessResponse(res, { game, ships, moves });
+  } catch (error) {
+    setErrorResponse(res, 500, error ?? ERROR.GAME_STATUS_FAILED);
   }
-  const ships = await shipDal.getAllShips(+gameId);
-  const moves = await moveDal.getAllMoves(+gameId);
-  setSuccessResponse(res, { game, ships, moves });
 };

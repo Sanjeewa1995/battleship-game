@@ -9,4 +9,5 @@ export const ERROR = {
   SHIP_PLACE_FAILED: "Failed to place the ship",
   SHOT_FAILED: "Failed shot",
   GAME_NOT_FOUND: "Game not found",
+  GAME_STATUS_FAILED: "Failed to get game satatus"
 };
